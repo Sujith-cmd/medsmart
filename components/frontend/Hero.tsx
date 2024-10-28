@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+"use client"
+import React, { useRef } from "react";
+import TransitionalText from "./TransitionalText";
 
 const Hero = () => {
+    const textRef = useRef(null);
   return (
    
       <div className="bg-blue-950">
@@ -10,7 +13,7 @@ const Hero = () => {
             <div className="w-full px-4 lg:w-5/12">
               <div className="hero-content">
                 <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                  Kickstart Startup Website with TailGrids
+                <TransitionalText ref={textRef}/>
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
                   With TailGrids, business and students thrive together.
@@ -18,6 +21,7 @@ const Hero = () => {
                   throughout the dayed.
                 </p>
                   {/* search bar here */}
+                 
                 <ul className="flex flex-wrap items-center">
                   <li>
                     <a
