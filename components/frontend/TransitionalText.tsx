@@ -1,10 +1,10 @@
 "use client"
-import React,{ useRef } from 'react';
+import React, { forwardRef } from 'react';
 import TextTransition, { presets } from 'react-text-transition';
 
 const TEXTS = ['Consult', 'Treat', 'Feel good', 'Start again'];
 
- const TransitionalText = () => {
+const TransitionalText = forwardRef<HTMLHeadingElement, React.HTMLProps<HTMLHeadingElement>>((props, ref) => {
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -12,18 +12,16 @@ const TEXTS = ['Consult', 'Treat', 'Feel good', 'Start again'];
       () => setIndex((index) => index + 1),
       3000, // every 3 seconds
     );
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); // Use clearInterval instead of clearTimeout
   }, []);
 
   return (
-    
-        <span>
-
+    <h1 ref={ref} {...props}>
       <TextTransition springConfig={presets.wobbly}>{TEXTS[index % TEXTS.length]}</TextTransition>
-        </span>
-    
+    </h1>
   );
-};
+});
 
-export default TransitionalText
+export default TransitionalText;
+
   
